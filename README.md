@@ -1,0 +1,1 @@
+# collection_points_map
