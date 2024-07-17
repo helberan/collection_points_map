@@ -11,7 +11,10 @@
 }
 
 .Main {
-  margin: 1.5rem;
+}
+
+.Commodity-cards-wrapper {
+  margin-left: 1rem;
 }
 
 .Commodity-card {
