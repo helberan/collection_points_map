@@ -1,0 +1,15 @@
+import transportBox from '../assets/transport_box_ruka.jpg';
+
+export const LandingPage = () => {
+  return (
+    <div className="Main">
+      <h2>Interaktivní mapa sběrných míst</h2>
+      <p>
+        Mapa sběrných míst vám pomůže nalézt nejbližší sběrný box, kam můžete odevzdat použité baterie (tužkové, knoflíkové, monočlánky i
+        akumulátory). Zadejte lokalitu, která vás zajímá, a zobrazí se vám všechna sběrná místa v okolí. V Seznamu míst můžete jednoduše pomocí filtru
+        vyhledat místo podle názvu ulice, obce nebo PSČ.
+      </p>
+      <img src={transportBox} alt="sběrná nádoba" style={{ height: '15rem', width: 'auto' }} />
+    </div>
+  );
+};

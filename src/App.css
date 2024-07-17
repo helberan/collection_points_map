@@ -5,30 +5,15 @@
 
 /* map size */
 .Map {
-  height: 100vh;
+  height: 93vh;
   width: auto;
   overflow: hidden;
-  border: 1px solid red;
 }
 
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.8rem;
+.Main {
+  margin: 1.5rem;
 }
 
-.import-wrapper-inner {
-  display: flex;
-  align-items: center;
-  margin-right: 0.5rem;
-}
-
-.import-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-.messages {
-  margin-bottom: 0.8rem;
+.Commodity-card {
+  margin-bottom: 0.5rem;
 }
