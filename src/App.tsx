@@ -1,35 +1,67 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import Box from '@mui/material/Box';
+import Drawer from '@mui/material/Drawer';
+import CssBaseline from '@mui/material/CssBaseline';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import Button from '@mui/material/Button';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { MapWrapper } from './components/MapWrapper';
+import { Contact } from './components/Contact';
+
+const drawerWidth = 400;
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="App">
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <AppBar position="fixed" sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}>
+            <Toolbar>
+              <Typography variant="h5" noWrap component="div">
+                mapa
+              </Typography>
+            </Toolbar>
+          </AppBar>
+          <Drawer
+            sx={{
+              width: drawerWidth,
+              flexShrink: 0,
+              '& .MuiDrawer-paper': {
+                width: drawerWidth,
+                boxSizing: 'border-box',
+              },
+            }}
+            variant="permanent"
+            anchor="left"
+          >
+            <Toolbar>
+              <div className="menu">
+                <Button>Seznam míst</Button>
+                <Button>Co se sbírá</Button>
+                <Link to="/contact">
+                  <Button>Kontakt</Button>
+                </Link>
+              </div>
+            </Toolbar>
+            <Divider />
+            <Box>
+              <Routes>
+                <Route path="/contact" element={<Contact />} />
+              </Routes>
+            </Box>
+          </Drawer>
+          <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3 }}>
+            <Toolbar />
+            <MapWrapper />
+          </Box>
+        </Box>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
