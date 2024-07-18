@@ -9,7 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import { useState } from 'react';
 import { Contact } from './Contact';
 import { LandingPage } from './LandingPage';
-import { LocationsList } from './LocationsList';
+import { LocationsList } from './Locations/LocationsList';
 import { Commodities } from './Commodities/Commodities';
 
 const drawerWidth = 450;

@@ -4,7 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 //import Typography from '@mui/material/Typography';
-import { MapWrapper } from './components/MapWrapper';
+import { Map } from './components/Map/Map';
 import { LeftDrawer } from './components/LeftDrawer';
 import { ThemeProvider } from '@mui/material/styles';
 import theme from './theme'; // Import your custom theme
@@ -29,7 +29,7 @@ function App() {
           <LeftDrawer />
           <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, padding: '0' }}>
             <Toolbar />
-            <MapWrapper />
+            <Map />
           </Box>
         </Box>
       </div>
