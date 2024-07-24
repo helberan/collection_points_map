@@ -21,3 +21,14 @@
 .Main {
   padding: 1rem 2rem;
 }
+
+.Menu {
+  display: flex;
+}
+
+.Menu a {
+  margin-left: 0.5rem;
+  padding-right: 0.8rem;
+  text-decoration: none;
+  color: black;
+}

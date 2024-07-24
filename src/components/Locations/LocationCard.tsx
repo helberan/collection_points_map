@@ -4,6 +4,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import IconButton from '@mui/material/IconButton';
 import { Link } from 'react-router-dom';
 import { Location } from '../../interfaces';
 import { AppDispatch } from '../../store/index';
@@ -23,7 +24,9 @@ export const LocationCard = ({ location }: { location: Location }) => {
         <ListItem disablePadding>
           <ListItemText primary={location.nazev_provozovny} secondary={`${location.ulice}, ${location.obec} ${location.psc}`} />
           <Link to={`/locations/${location.id}`}>
-            <NavigateNextIcon onClick={handleClick} />
+            <IconButton>
+              <NavigateNextIcon onClick={handleClick} />
+            </IconButton>
           </Link>
         </ListItem>
       </List>
