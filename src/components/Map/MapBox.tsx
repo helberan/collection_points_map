@@ -5,7 +5,6 @@ import { setLocationsState } from '../../store/locationsSlice';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
 import mapboxgl from 'mapbox-gl';
 import { Point, Location } from '../../interfaces';
-import Loader from '../Loader';
 
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -16,13 +15,6 @@ export const MapBox = () => {
 
   const locations = useSelector((state: RootState) => state.locations.locations);
   const [points, setPoints] = useState<Point | null>(null);
-  const [loading, setLoading] = useState<boolean>(true);
-
-  useEffect(() => {
-    if (locations.length > 0) {
-      setLoading(false);
-    }
-  }, [locations]);
 
   //CREATE POINTS FOR CLUSTERING
   useEffect(() => {
@@ -142,7 +134,7 @@ export const MapBox = () => {
         // the location of the feature, with
         // description HTML from its properties.
         mapRef.current.on('click', 'unclustered-point', (e) => {
-          dispatch(setSelectedLocationState(e.features[0].properties));
+          dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
           const coordinates = e.features[0].geometry.coordinates.slice();
           const nazev = e.features[0].properties.nazev_provozovny;
           const kod = e.features[0].properties.kod_provozovny;

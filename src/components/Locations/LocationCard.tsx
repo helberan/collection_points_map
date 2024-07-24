@@ -12,7 +12,7 @@ export const LocationCard = ({ location }: { location: Location }) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = () => {
-    dispatch(setSelectedLocationState(location));
+    dispatch(setSelectedLocationState({ location: location, selected: true }));
   };
 
   return (

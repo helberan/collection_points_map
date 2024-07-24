@@ -10,6 +10,9 @@ import { Contact } from './Contact';
 import { LandingPage } from './LandingPage';
 import { LocationsList } from './Locations/LocationsList';
 import { Commodities } from './Commodities/Commodities';
+import { SelectedLocation } from './SelectedLocation';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/index';
 
 const drawerWidth = 450;
 
@@ -43,6 +46,7 @@ function a11yProps(index: number) {
 
 export const LeftDrawer = () => {
   const [value, setValue] = useState(0);
+  const selectedLocation = useSelector((state: RootState) => state.selectedLocation.selected);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -72,20 +76,26 @@ export const LeftDrawer = () => {
         </Box>
       </Toolbar>
       <Divider />
-      <Box>
-        <CustomTabPanel value={value} index={0}>
-          <LandingPage />
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={1}>
-          <LocationsList />
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={2}>
-          <Commodities />
-        </CustomTabPanel>
-        <CustomTabPanel value={value} index={3}>
-          <Contact />
-        </CustomTabPanel>
-      </Box>
+      {selectedLocation ? (
+        <Box>
+          <SelectedLocation />
+        </Box>
+      ) : (
+        <Box>
+          <CustomTabPanel value={value} index={0}>
+            <LandingPage />
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={1}>
+            <LocationsList />
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={2}>
+            <Commodities />
+          </CustomTabPanel>
+          <CustomTabPanel value={value} index={3}>
+            <Contact />
+          </CustomTabPanel>
+        </Box>
+      )}
     </Drawer>
   );
 };
