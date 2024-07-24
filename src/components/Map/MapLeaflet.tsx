@@ -8,7 +8,7 @@ import { setInitialState } from '../../store/locationsSlice';
 import { useEffect, useState } from 'react';
 import Loader from '../Loader';
 
-export const Map = () => {
+export const MapLeaflet = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const locations = useSelector((state: RootState) => state.locations.locations);

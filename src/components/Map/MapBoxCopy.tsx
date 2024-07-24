@@ -8,6 +8,7 @@ import Loader from '../Loader';
 
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
+  const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
 
   const locations = useSelector((state: RootState) => state.locations.locations);
   const [loading, setLoading] = useState<boolean>(true);
@@ -34,7 +35,9 @@ export const MapBox = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    mapboxgl.accessToken = 'pk.eyJ1IjoiaGVsYmVyYW4iLCJhIjoiY2x5eWNkdmRpMjBvYTJsc2d2aHE3d2k3cCJ9.Z5ibEs3d8wWhEiHznS9upQ';
+    if (mapboxToken) {
+      mapboxgl.accessToken = mapboxToken;
+    }
 
     if (!mapContainerRef.current) return;
 

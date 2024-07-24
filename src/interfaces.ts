@@ -33,3 +33,21 @@ export interface Location {
   prenosne: boolean | undefined;
   automobilove: boolean | undefined;
 }
+
+export interface Point {
+  type: string;
+  crs: {
+    type: string;
+    properties: {
+      name: string;
+    };
+  };
+  features: {
+    type: string;
+    properties: Location;
+    geometry: {
+      type: string;
+      coordinates: [number, number];
+    };
+  }[];
+}
