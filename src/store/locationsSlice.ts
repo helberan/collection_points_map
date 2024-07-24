@@ -8,6 +8,7 @@ export interface Locations {
 const initialState: Locations = {
   locations: [
     {
+      id: undefined,
       kod_provozovny: '',
       nazev_provozovny: '',
       subjekt: '',

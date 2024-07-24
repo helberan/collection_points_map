@@ -3,6 +3,7 @@ import { SelectedLocation } from '../interfaces';
 
 const initialState: SelectedLocation = {
   location: {
+    id: undefined,
     kod_provozovny: '',
     nazev_provozovny: '',
     subjekt: '',

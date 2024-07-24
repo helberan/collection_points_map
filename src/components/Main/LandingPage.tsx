@@ -1,4 +1,4 @@
-import transportBox from '../assets/transport_box_ruka.jpg';
+import transportBox from '../../assets/transport_box_ruka.jpg';
 
 export const LandingPage = () => {
   return (

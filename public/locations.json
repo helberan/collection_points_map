@@ -1,6 +1,7 @@
 {
   "locations": [
     {
+      "id": 0,
       "kod_provozovny": "SM/021",
       "nazev_provozovny": "AVE Pražské komunální služby a.s.",
       "subjekt": "AVE CZ odpadové hospodářství s.r.o.",
@@ -36,6 +37,7 @@
       "automobilove": true
     },
     {
+      "id": 1,
       "kod_provozovny": "SM/111",
       "nazev_provozovny": "Sběrný dvůr Praha, Pod Šancemi 444/1 - Pražské služby",
       "subjekt": "Hlavní město Praha",
@@ -71,6 +73,7 @@
       "automobilove": true
     },
     {
+      "id": 2,
       "kod_provozovny": "SM/062",
       "nazev_provozovny": "Sběrný dvůr Klokoty",
       "subjekt": "Rumpold s.r.o.",
@@ -106,6 +109,7 @@
       "automobilove": true
     },
     {
+      "id": 3,
       "kod_provozovny": "SM/181",
       "nazev_provozovny": "Sběrný dvůr Lišov - Skládka Lišov",
       "subjekt": "FCC Česká republika, s.r.o.",
@@ -141,6 +145,7 @@
       "automobilove": true
     },
     {
+      "id": 4,
       "kod_provozovny": "SM/031",
       "nazev_provozovny": "Sběrné středisko odpadů Vídeňská",
       "subjekt": "SAKO Brno, a.s.",
@@ -176,6 +181,7 @@
       "automobilove": true
     },
     {
+      "id": 5,
       "kod_provozovny": "SM/036",
       "nazev_provozovny": "Sběrný dvůr Hodonín",
       "subjekt": "TESPRA Hodonín, s.r.o.",
@@ -211,6 +217,7 @@
       "automobilove": true
     },
     {
+      "id": 6,
       "kod_provozovny": "SM/152",
       "nazev_provozovny": "AVE CZ NEJDEK",
       "subjekt": "AVE CZ odpadové hospodářství s.r.o.",
@@ -246,6 +253,7 @@
       "automobilove": true
     },
     {
+      "id": 7,
       "kod_provozovny": "SM/156",
       "nazev_provozovny": "Městský úřad Chodov",
       "subjekt": "Město Chodov",
@@ -281,6 +289,7 @@
       "automobilove": false
     },
     {
+      "id": 8,
       "kod_provozovny": "SM/106",
       "nazev_provozovny": "Sběrný dvůr Solnice",
       "subjekt": "ODPADY s.r.o.",
@@ -316,6 +325,7 @@
       "automobilove": false
     },
     {
+      "id": 9,
       "kod_provozovny": "SM/187",
       "nazev_provozovny": "Centrální svozový dvůr",
       "subjekt": "TS RK, s.r.o.",
@@ -351,6 +361,7 @@
       "automobilove": true
     },
     {
+      "id": 10,
       "kod_provozovny": "SM/129",
       "nazev_provozovny": "Sběrný dvůr Vesecko",
       "subjekt": "MĚSTO TURNOV",
@@ -386,6 +397,7 @@
       "automobilove": true
     },
     {
+      "id": 11,
       "kod_provozovny": "SM/139",
       "nazev_provozovny": "Sběrný dvůr Lomnice nad Popelkou",
       "subjekt": "Město Lomnice nad Popelkou",
@@ -421,6 +433,7 @@
       "automobilove": true
     },
     {
+      "id": 12,
       "kod_provozovny": "SM/101",
       "nazev_provozovny": "Sběrný dvůr Panské Nové Dvory",
       "subjekt": "Frýdecká skládka, a.s.",
@@ -456,6 +469,7 @@
       "automobilove": true
     },
     {
+      "id": 13,
       "kod_provozovny": "SM/137",
       "nazev_provozovny": "Sběrný dvůr Třinec",
       "subjekt": "SMOLO CZ, s.r.o.",
@@ -491,6 +505,7 @@
       "automobilove": true
     },
     {
+      "id": 14,
       "kod_provozovny": "SM/074",
       "nazev_provozovny": "Sběrný dvůr Jeseník",
       "subjekt": "Město Jeseník",
@@ -526,6 +541,7 @@
       "automobilove": true
     },
     {
+      "id": 15,
       "kod_provozovny": "SM/123",
       "nazev_provozovny": "AVE Olomouc - provozovna",
       "subjekt": "AVE CZ odpadové hospodářství s.r.o.",
@@ -561,6 +577,7 @@
       "automobilove": true
     },
     {
+      "id": 16,
       "kod_provozovny": "SM/001",
       "nazev_provozovny": "sběrný dvůr České Libchavy",
       "subjekt": "Ekola České Libchavy, s.r.o.",
@@ -596,6 +613,7 @@
       "automobilove": true
     },
     {
+      "id": 17,
       "kod_provozovny": "SM/011",
       "nazev_provozovny": "Sběrný dvůr Horní Ředice",
       "subjekt": "Obec Horní Ředice",
@@ -631,6 +649,7 @@
       "automobilove": false
     },
     {
+      "id": 18,
       "kod_provozovny": "SM/054",
       "nazev_provozovny": "Sběrný dvůr Němčičky (Rokycany)",
       "subjekt": "Rumpold - R Rokycany s.r.o.",
@@ -666,6 +685,7 @@
       "automobilove": true
     },
     {
+      "id": 19,
       "kod_provozovny": "SM/061",
       "nazev_provozovny": "Sběrný dvůr Černošín - skládka",
       "subjekt": "EKODEPON s.r.o.",
@@ -701,6 +721,7 @@
       "automobilove": true
     },
     {
+      "id": 20,
       "kod_provozovny": "SM/015",
       "nazev_provozovny": "sběrný dvůr Čáslav, Hejdof 1666",
       "subjekt": "AVE CZ odpadové hospodářství s.r.o.",
@@ -736,6 +757,7 @@
       "automobilove": true
     },
     {
+      "id": 21,
       "kod_provozovny": "SM/022",
       "nazev_provozovny": "Sběrný dvůr Lysá nad Labem",
       "subjekt": "FCC Česká republika, s.r.o.",
@@ -771,6 +793,7 @@
       "automobilove": false
     },
     {
+      "id": 22,
       "kod_provozovny": "SM/018",
       "nazev_provozovny": "sběrný dvůr Ústí nad Labem",
       "subjekt": "AVE CZ odpadové hospodářství s.r.o.",
@@ -806,6 +829,7 @@
       "automobilove": true
     },
     {
+      "id": 23,
       "kod_provozovny": "SM/042",
       "nazev_provozovny": "Sběrný dvůr Lovosice, Prosmycká 2/88",
       "subjekt": "FCC Česká republika, s.r.o.",
@@ -841,6 +865,7 @@
       "automobilove": true
     },
     {
+      "id": 24,
       "kod_provozovny": "SM/004",
       "nazev_provozovny": "Sběrný dvůr Žďár nad Sázavou",
       "subjekt": "AVE CZ odpadové hospodářství s.r.o.",
@@ -876,6 +901,7 @@
       "automobilove": true
     },
     {
+      "id": 25,
       "kod_provozovny": "SM/028",
       "nazev_provozovny": "Sběrný dvůr Havlíčkův Brod, Reynkova 2886",
       "subjekt": "Město Havlíčkův Brod",
@@ -911,6 +937,7 @@
       "automobilove": true
     },
     {
+      "id": 26,
       "kod_provozovny": "SM/013",
       "nazev_provozovny": "Sběrný dvůr Louky",
       "subjekt": "Technické služby Zlín, s.r.o.",
@@ -946,6 +973,7 @@
       "automobilove": true
     },
     {
+      "id": 27,
       "kod_provozovny": "SM/090",
       "nazev_provozovny": "Hala pro soustřeďování odpadů UB - Králov",
       "subjekt": "Rumpold UHB s.r.o.",

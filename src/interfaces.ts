@@ -1,4 +1,5 @@
 export interface Location {
+  id: number | undefined;
   kod_provozovny: string;
   nazev_provozovny: string;
   subjekt: string;
@@ -36,6 +37,7 @@ export interface Location {
 
 export interface SelectedLocation {
   location: {
+    id: number | undefined;
     kod_provozovny: string;
     nazev_provozovny: string;
     subjekt: string;
