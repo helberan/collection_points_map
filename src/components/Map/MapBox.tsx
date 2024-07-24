@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/index';
-import { setInitialState } from '../../store/locationsSlice';
+import { setLocationsState } from '../../store/locationsSlice';
+import { setSelectedLocationState } from '../../store/selectedLocationSlice';
 import mapboxgl from 'mapbox-gl';
 import { Point, Location } from '../../interfaces';
 import Loader from '../Loader';
@@ -50,7 +51,7 @@ export const MapBox = () => {
       try {
         const response = await fetch('../../public/locations.json').then((res) => res.json());
         //console.log('locations loaded in map component ', response.locations);
-        dispatch(setInitialState(response.locations));
+        dispatch(setLocationsState(response.locations));
       } catch (err) {
         console.error(err);
       }
@@ -141,6 +142,7 @@ export const MapBox = () => {
         // the location of the feature, with
         // description HTML from its properties.
         mapRef.current.on('click', 'unclustered-point', (e) => {
+          dispatch(setSelectedLocationState(e.features[0].properties));
           const coordinates = e.features[0].geometry.coordinates.slice();
           const nazev = e.features[0].properties.nazev_provozovny;
           const kod = e.features[0].properties.kod_provozovny;

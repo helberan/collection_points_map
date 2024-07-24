@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import locationsReducer from './locationsSlice';
+import selectedLocationReducer from './selectedLocationSlice';
 
 const store = configureStore({
   reducer: {
     locations: locationsReducer,
+    selectedLocation: selectedLocationReducer,
   },
 });
 

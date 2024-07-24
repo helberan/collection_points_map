@@ -4,11 +4,10 @@ import CssBaseline from '@mui/material/CssBaseline';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 //import Typography from '@mui/material/Typography';
-//import { Map } from './components/Map/Map';
 import { MapBox } from './components/Map/MapBox';
 import { LeftDrawer } from './components/LeftDrawer';
 import { ThemeProvider } from '@mui/material/styles';
-import theme from './theme'; // Import your custom theme
+import theme from './theme';
 import logo from './assets/ecobat_logo.png';
 
 const drawerWidth = 450;
@@ -30,7 +29,7 @@ function App() {
           <LeftDrawer />
           <Box component="main" sx={{ flexGrow: 1, bgcolor: 'background.default', p: 3, padding: '0' }}>
             <Toolbar />
-            {/* <Map /> */}
+
             <MapBox />
           </Box>
         </Box>

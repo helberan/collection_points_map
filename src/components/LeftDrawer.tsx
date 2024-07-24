@@ -4,7 +4,6 @@ import Tab from '@mui/material/Tab';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import Divider from '@mui/material/Divider';
-//import Button from '@mui/material/Button';
 import HomeIcon from '@mui/icons-material/Home';
 import { useState } from 'react';
 import { Contact } from './Contact';
@@ -19,6 +18,11 @@ interface TabPanelProps {
   index: number;
   value: number;
 }
+
+/* interface DrawerProps {
+  open: boolean;
+  onClose: () => void;
+} */
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;
