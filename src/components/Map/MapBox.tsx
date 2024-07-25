@@ -19,6 +19,20 @@ export const MapBox = () => {
   const locations = useSelector((state: RootState) => state.locations.locations);
   const [points, setPoints] = useState<Point | null>(null);
 
+  //FETCH LOCATIONS
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const response = await fetch('/locations.json').then((res) => res.json());
+        //console.log('locations loaded in map component ', response.locations);
+        dispatch(setLocationsState(response.locations));
+      } catch (err) {
+        console.error('locations failed to fetch: ', err);
+      }
+    };
+    fetchLocations();
+  }, [dispatch]);
+
   //CREATE POINTS FOR CLUSTERING
   useEffect(() => {
     const points: Point = {
@@ -41,19 +55,7 @@ export const MapBox = () => {
     setPoints(points);
   }, [locations]);
 
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const response = await fetch('../../public/locations.json').then((res) => res.json());
-        //console.log('locations loaded in map component ', response.locations);
-        dispatch(setLocationsState(response.locations));
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    fetchLocations();
-  }, [dispatch]);
-
+  //MAP
   useEffect(() => {
     if (mapboxToken) {
       mapboxgl.accessToken = mapboxToken;
@@ -112,7 +114,7 @@ export const MapBox = () => {
             'circle-color': '#ff2121',
             'circle-radius': 5,
             'circle-stroke-width': 1,
-            'circle-stroke-color': '#fff',
+            'circle-stroke-color': '#000000',
           },
         });
 
@@ -156,14 +158,27 @@ export const MapBox = () => {
         mapRef.current.on('mouseenter', 'clusters', () => {
           mapRef.current.getCanvas().style.cursor = 'pointer';
         });
+        mapRef.current.on('mouseenter', 'unclustered-point', () => {
+          mapRef.current.getCanvas().style.cursor = 'pointer';
+        });
         mapRef.current.on('mouseleave', 'clusters', () => {
           mapRef.current.getCanvas().style.cursor = '';
+        });
+        mapRef.current.on('resize', () => {
+          console.log('map resized');
         });
       }
     });
 
     return () => mapRef.current.remove();
   }, [points, mapboxToken]);
+
+  /* //MAP RESIZE
+  useLayoutEffect(() => {
+    if (mapRef.current) {
+      mapRef.current.resize();
+    }
+  }, [drawerOpen]); */
 
   return <div id="map" ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}></div>;
 };

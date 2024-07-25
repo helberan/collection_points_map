@@ -24,7 +24,7 @@ export const MapBox = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch('../../public/locations.json').then((res) => res.json());
+        const response = await fetch('/locations.json').then((res) => res.json());
         //console.log('locations loaded in map component ', response.locations);
         dispatch(setInitialState(response.locations));
       } catch (err) {

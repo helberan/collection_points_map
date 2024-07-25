@@ -24,8 +24,8 @@ export const LocationCard = ({ location }: { location: Location }) => {
         <ListItem disablePadding>
           <ListItemText primary={location.nazev_provozovny} secondary={`${location.ulice}, ${location.obec} ${location.psc}`} />
           <Link to={`/locations/${location.id}`}>
-            <IconButton>
-              <NavigateNextIcon onClick={handleClick} />
+            <IconButton onClick={handleClick}>
+              <NavigateNextIcon />
             </IconButton>
           </Link>
         </ListItem>
