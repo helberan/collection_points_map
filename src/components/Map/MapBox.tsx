@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { RootState, AppDispatch } from '../../store/index';
 import { setLocationsState } from '../../store/locationsSlice';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
@@ -8,6 +9,8 @@ import { Point, Location } from '../../interfaces';
 
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
+  const navigate = useNavigate();
+
   const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
 
   const mapContainerRef = useRef<HTMLDivElement | string>('');
@@ -135,6 +138,7 @@ export const MapBox = () => {
         // description HTML from its properties.
         mapRef.current.on('click', 'unclustered-point', (e) => {
           dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
+          navigate(`/locations/${e.features[0].properties.id}`);
           const coordinates = e.features[0].geometry.coordinates.slice();
           const nazev = e.features[0].properties.nazev_provozovny;
           const kod = e.features[0].properties.kod_provozovny;
