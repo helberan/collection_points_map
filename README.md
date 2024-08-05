@@ -1,30 +1,51 @@
-# React + TypeScript + Vite
+# Battery Collection Points Map
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+xxx
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Interactive Map
+- Location Details - display location details after clicking on a marker
+- Locations filtering and searching
+- Easy toggle navigation
 
-## Expanding the ESLint configuration
+## Technology used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- React
+- TypeScript
+- Redux
+- Vite
+- Mapbox GL JS
+- Material UI
 
-- Configure the top-level `parserOptions` property like this:
+## Project Setup
+
+To set up the project on your local machine, follow these steps:
+
+### `git clone <repository-url>`
+
+Clone the repository to your local machine. Replace "<repository-url>" with the URL of our GitHub repository.
+
+### `npm install`
+
+Install the project dependencies. This command will read the package.json file and install all the required packages.
+
+### add your Mapbox token
+
+Create a `.env` file in the root directory and add your Mapbox token.
 
 ```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+REACT_APP_MAPBOX_TOKEN=your_mapbox_token_here
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### `npm run dev`
+
+Runs the app in the development mode.
+Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+
+## Usage
+
+### Interacting with the Map:
+
+Click on map markers to view details about specific locations.
+Use the drawer navigation to switch between different sections of the app.
