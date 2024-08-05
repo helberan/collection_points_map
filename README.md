@@ -1,6 +1,7 @@
 # Battery Collection Points Map
 
-xxx
+Battery Collection Points Map is an open-source project that aims to create an interactive map displaying all available collection points for batteries in the Czech Republic.
+The application allows users to filter collection points based on a searched location and/or the type of batteries they accept, providing an easy and efficient way to find the nearest collection point for different battery types.
 
 ## Features
 
@@ -49,3 +50,9 @@ Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 
 Click on map markers to view details about specific locations.
 Use the drawer navigation to switch between different sections of the app.
+
+## Plan for next development
+
+- add locations filtering based on battery type
+- connect app to a database of collection points
+- add conditional rendering of collection points based on visible map part
