@@ -67,16 +67,16 @@ export const MainComponent = () => {
                 <HomeIcon />
               </Link>
               <Link to="/locations">Seznam míst</Link>
-              <Link to="/commodities">Co se sbírá</Link>
+              <Link to="/home">Domů</Link>
               <Link to="/contact">Kontakt</Link>
             </div>
             <IconButton onClick={handleDrawerClose}>{<ChevronLeftIcon />}</IconButton>
           </StyledDrawerHeader>
           <Divider />
           <Routes>
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/home" element={<LandingPage />} />
             <Route path="/locations" element={<LocationsList />} />
-            <Route path="/commodities" element={<Commodities />} />
+            <Route path="/" element={<Commodities />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/locations/:id" element={<SelectedLocation />} />
           </Routes>
