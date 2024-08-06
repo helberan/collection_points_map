@@ -33,18 +33,19 @@ export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleC
   };
 
   return (
-    <Card className={checked ? 'commodity-card selected' : 'commodity-card'} onClick={() => handleCardCheck(commodity.id)}>
-      <CardContent sx={{ display: 'flex' }}>
-        <img src={images[commodity.id]} alt={commodity.categoryName} />
-        <div className="commodity-card-inner">
-          <Typography variant="h4" component="div" sx={{ fontSize: 17, marginBottom: "0.5rem" }}>
-            {commodity.categoryName}
-          </Typography>
-          <Typography sx={{ fontSize: 13.5 }} color="text.secondary">
-            {commodity.description}
-          </Typography>
-        </div>
-      </CardContent>
-    </Card>
+    <div>
+      <div className="commodity-card-wrapper">
+        {/* -----FRONT----- */}
+        <Card className={checked ? 'commodity-card-selected' : 'commodity-card'} onClick={() => handleCardCheck(commodity.id)}>
+          <CardMedia sx={{ height: 143 }} image={images[commodity.id]} title={commodity.categoryName} />
+          <CardContent>
+            <Typography sx={{ fontSize: '1rem' }}>{commodity.categoryName}</Typography>
+          </CardContent>
+          {/* <CardActions>
+            <Button size="small">Detail</Button>
+          </CardActions> */}
+        </Card>
+      </div>
+    </div>
   );
 };
