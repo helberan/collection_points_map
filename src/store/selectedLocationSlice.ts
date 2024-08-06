@@ -24,6 +24,7 @@ const initialState: SelectedLocation = {
     prumyslove: undefined,
     prenosne: undefined,
     automobilove: undefined,
+    commodity: [],
   },
   selected: false,
 };

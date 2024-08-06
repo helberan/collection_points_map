@@ -13,7 +13,7 @@
     "ib": false,
     "ab": false,
     "categoryName": "Malé dobíjecí baterie",
-    "description": "Dobíjecí články a baterie pro mobilní telefony, laptopy, aku-nářadí, powerbanky, e-cigarety apod. v pevném obalu."
+    "description": "Dobíjecí články a baterie pro\u00a0mobilní telefony, laptopy, aku\u2011nářadí, powerbanky, e\u2011cigarety apod. v\u00a0pevném obalu."
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "ib": true,
     "ab": false,
     "categoryName": "Baterie z elektrokol",
-    "description": "Dobíjecí články a baterie z elektrokol, elektrokoloběžek, e-skútrů apod. v pevném obalu."
+    "description": "Dobíjecí články a baterie z\u00a0elektrokol, elektrokoloběžek, e\u2011skútrů apod. v\u00a0pevném obalu."
   },
   {
     "id": 3,
@@ -29,7 +29,7 @@
     "ib": false,
     "ab": true,
     "categoryName": "Mokré a startovací baterie",
-    "description": "Startovací baterie, olověné (Pb) a kadmiové (Cd) akumulátory s tekutým či gelovým elektrolytem."
+    "description": "Startovací baterie, olověné (Pb) a\u00a0kadmiové (Cd) akumulátory s\u00a0tekutým či\u00a0gelovým elektrolytem."
   },
   {
     "id": 4,
@@ -37,6 +37,6 @@
     "ib": true,
     "ab": false,
     "categoryName": "Velké akumulátory",
-    "description": "Baterie z fotovoltaických systémů, baterie z elektromobilů apod."
+    "description": "Baterie z\u00a0fotovoltaických systémů, baterie z\u00a0elektromobilů apod."
   }
 ]

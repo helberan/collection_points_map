@@ -13,10 +13,15 @@ export const MapBox = () => {
 
   const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
 
+  //map containers ref
   const mapContainerRef = useRef<HTMLDivElement | string>('');
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
+  //state
   const locations = useSelector((state: RootState) => state.locations.locations);
+  const selectedTypes = useSelector((state: RootState) => state.selectedTypes);
+
+  //locations prepared to be placed on the map
   const [points, setPoints] = useState<Point | null>(null);
 
   //FETCH LOCATIONS
@@ -35,6 +40,12 @@ export const MapBox = () => {
 
   //CREATE POINTS FOR CLUSTERING
   useEffect(() => {
+    //filter locations based on selected commodity type
+    const filteredLocations = locations.filter((location) =>
+      location.commodity.some((commodityType) => selectedTypes.selectedTypes.includes(commodityType))
+    );
+
+    //locations prepared to be points on the map
     const points: Point = {
       type: 'FeatureCollection',
       crs: {
@@ -43,7 +54,7 @@ export const MapBox = () => {
           name: 'urn:ogc:def:crs:OGC:1.3:CRS84',
         },
       },
-      features: locations.map((location: Location) => ({
+      features: filteredLocations.map((location: Location) => ({
         type: 'Feature',
         properties: location,
         geometry: {
@@ -53,7 +64,7 @@ export const MapBox = () => {
       })),
     };
     setPoints(points);
-  }, [locations]);
+  }, [locations, selectedTypes]);
 
   //MAP
   useEffect(() => {
@@ -152,7 +163,7 @@ export const MapBox = () => {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          new mapboxgl.Popup().setLngLat(coordinates).setHTML(`<b>${nazev}</b><br>Kód provozovny: ${kod}`).addTo(mapRef.current);
+          //new mapboxgl.Popup().setLngLat(coordinates).setHTML(`<b>${nazev}</b><br>Kód provozovny: ${kod}`).addTo(mapRef.current);
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {
@@ -171,7 +182,7 @@ export const MapBox = () => {
     });
 
     return () => mapRef.current.remove();
-  }, [points, mapboxToken]);
+  }, []);
 
   /* //MAP RESIZE
   useLayoutEffect(() => {
@@ -179,6 +190,16 @@ export const MapBox = () => {
       mapRef.current.resize();
     }
   }, [drawerOpen]); */
+
+  //new source for data to be displayed on the map when selecting commodities
+  useEffect(() => {
+    if (mapRef.current && mapRef.current.getSource('locations')) {
+      const source = mapRef.current.getSource('locations') as mapboxgl.GeoJSONSource;
+      if (source && points) {
+        source.setData(points);
+      }
+    }
+  }, [points]);
 
   return <div id="map" ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}></div>;
 };
