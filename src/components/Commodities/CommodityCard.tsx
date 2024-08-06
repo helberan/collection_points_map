@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import './CommodityCard.css';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -19,20 +18,14 @@ interface CommodityCardProps {
     description: string;
   };
   handleCheck: (cardId: number) => void;
+  isSelected: boolean;
 }
 
-export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleCheck }) => {
+export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleCheck, isSelected }) => {
   const images = [portableBattery, smallChargableBattery, lmtBattery, carAndOtherBattery, evAndIndustrialBattery];
-  const [checked, setChecked] = useState<boolean>(false);
-
-  //handles card click and css class
-  const handleCardCheck = (id: number) => {
-    handleCheck(id);
-    setChecked(!checked);
-  };
 
   return (
-    <Card className={checked ? 'commodity-card selected' : 'commodity-card'} onClick={() => handleCardCheck(commodity.id)}>
+    <Card className={isSelected ? 'commodity-card selected' : 'commodity-card'} onClick={() => handleCheck(commodity.id)}>
       <CardContent sx={{ display: 'flex' }}>
         <img src={images[commodity.id]} alt={commodity.categoryName} />
         <div className="commodity-card-inner">

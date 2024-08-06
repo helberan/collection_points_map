@@ -9,7 +9,7 @@ const initialState: SelectedTypes = {
 };
 
 const selectedTypesSlice = createSlice({
-  name: 'locationsSlice',
+  name: 'selectedTypesSlice',
   initialState,
   reducers: {
     setSelectedTypesState(state, action: PayloadAction<number[]>) {
