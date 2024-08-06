@@ -29,7 +29,6 @@ export const MapBox = () => {
     const fetchLocations = async () => {
       try {
         const response = await fetch('/locations.json').then((res) => res.json());
-        //console.log('locations loaded in map component ', response.locations);
         dispatch(setLocationsState(response.locations));
       } catch (err) {
         console.error('locations failed to fetch: ', err);
@@ -71,6 +70,8 @@ export const MapBox = () => {
     if (mapboxToken) {
       mapboxgl.accessToken = mapboxToken;
     }
+
+    if (!mapContainerRef.current) return;
 
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
@@ -129,14 +130,14 @@ export const MapBox = () => {
           },
         });
 
-        // inspect a cluster on click
+        //inspect a cluster on click
         mapRef.current.on('click', 'clusters', (e) => {
-          const features = mapRef.current.queryRenderedFeatures(e.point, {
+          const features = mapRef.current?.queryRenderedFeatures(e.point, {
             layers: ['clusters'],
           });
           const clusterId = features[0].properties.cluster_id;
           mapRef.current.getSource('locations').getClusterExpansionZoom(clusterId, (err, zoom) => {
-            if (err) return;
+            if (err || !mapRef.current) return;
 
             mapRef.current.easeTo({
               center: features[0].geometry.coordinates,
@@ -145,25 +146,10 @@ export const MapBox = () => {
           });
         });
 
-        // When a click event occurs on a feature in
-        // the unclustered-point layer, open a popup at
-        // the location of the feature, with
-        // description HTML from its properties.
+        //once clicked on an unclustered point store updates and navigates to a selected point route
         mapRef.current.on('click', 'unclustered-point', (e) => {
           dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
           navigate(`/locations/${e.features[0].properties.id}`);
-          const coordinates = e.features[0].geometry.coordinates.slice();
-          const nazev = e.features[0].properties.nazev_provozovny;
-          const kod = e.features[0].properties.kod_provozovny;
-
-          // Ensure that if the map is zoomed out such that
-          // multiple copies of the feature are visible, the
-          // popup appears over the copy being pointed to.
-          while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-          }
-
-          //new mapboxgl.Popup().setLngLat(coordinates).setHTML(`<b>${nazev}</b><br>Kód provozovny: ${kod}`).addTo(mapRef.current);
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {
