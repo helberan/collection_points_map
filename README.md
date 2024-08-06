@@ -31,7 +31,7 @@ Clone the repository to your local machine. Replace "<repository-url>" with the 
 
 Install the project dependencies. This command will read the package.json file and install all the required packages.
 
-### add your Mapbox token
+### `add your Mapbox token`
 
 Create a `.env` file in the root directory and add your Mapbox token.
 
