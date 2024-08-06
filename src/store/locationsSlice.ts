@@ -29,6 +29,7 @@ const initialState: Locations = {
       prumyslove: undefined,
       prenosne: undefined,
       automobilove: undefined,
+      commodity: [],
     },
   ],
 };

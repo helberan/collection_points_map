@@ -1,28 +1,26 @@
 import { CommodityCard } from './CommodityCard';
 import { useEffect, useState } from 'react';
 import commoditiesData from './commodities.json';
-
-interface SelectedCard {
-  id: number;
-  checked: boolean;
-}
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../store/index';
+import { setSelectedTypesState } from '../../store/selectedTypeSlice';
 
 export const Commodities = () => {
-  const [selectedCards, setSelectedCards] = useState<SelectedCard[]>([
-    { id: 0, checked: false },
-    { id: 1, checked: false },
-    { id: 2, checked: false },
-    { id: 3, checked: false },
-    { id: 4, checked: false },
-  ]);
+  const dispatch: AppDispatch = useDispatch();
 
+  const [selectedCardIds, setSelectedCardIds] = useState<number[]>([]);
+
+  //updates selected commodity type state in store based on card/commodity id
   const handleCheck = (cardId: number) => {
-    setSelectedCards((cards) => cards.map((card) => (card.id === cardId ? { ...card, checked: !card.checked } : card)));
+    setSelectedCardIds((prevSelectedIds) =>
+      prevSelectedIds.includes(cardId) ? prevSelectedIds.filter((id) => id !== cardId) : [...prevSelectedIds, cardId]
+    );
   };
 
+  //updates selected commodity type state after each select
   useEffect(() => {
-    console.log(selectedCards);
-  }, [selectedCards]);
+    dispatch(setSelectedTypesState(selectedCardIds));
+  }, [selectedCardIds, dispatch]);
 
   return (
     <div className="Main">

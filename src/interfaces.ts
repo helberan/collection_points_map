@@ -20,6 +20,7 @@ export interface Location {
   prumyslove: boolean | undefined;
   prenosne: boolean | undefined;
   automobilove: boolean | undefined;
+  commodity: number[];
 }
 
 export interface SelectedLocation {
@@ -45,6 +46,7 @@ export interface SelectedLocation {
     prumyslove: boolean | undefined;
     prenosne: boolean | undefined;
     automobilove: boolean | undefined;
+    commodity: number[];
   };
   selected: boolean;
 }
@@ -65,4 +67,9 @@ export interface Point {
       coordinates: [number, number];
     };
   }[];
+}
+
+export interface SelectedCard {
+  id: number;
+  checked: boolean;
 }

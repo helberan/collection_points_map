@@ -16,7 +16,10 @@ export const MapBox = () => {
   const mapContainerRef = useRef<HTMLDivElement | string>('');
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
+  //state
   const locations = useSelector((state: RootState) => state.locations.locations);
+  const selectedTypes = useSelector((state: RootState) => state.selectedTypes);
+
   const [points, setPoints] = useState<Point | null>(null);
 
   //FETCH LOCATIONS
@@ -152,7 +155,7 @@ export const MapBox = () => {
             coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
           }
 
-          new mapboxgl.Popup().setLngLat(coordinates).setHTML(`<b>${nazev}</b><br>Kód provozovny: ${kod}`).addTo(mapRef.current);
+          //new mapboxgl.Popup().setLngLat(coordinates).setHTML(`<b>${nazev}</b><br>Kód provozovny: ${kod}`).addTo(mapRef.current);
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {

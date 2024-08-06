@@ -18,6 +18,7 @@ export const SelectedLocation = () => {
       <p>{selectedLocation.location.ulice}</p>
       <p>{selectedLocation.location.obec}</p>
       <p>{selectedLocation.location.psc}</p>
+      <p>{selectedLocation.location.commodity}</p>
     </div>
   );
 };
