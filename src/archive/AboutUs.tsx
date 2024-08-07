@@ -1,6 +1,6 @@
 import transportBox from '../../assets/transport_box_ruka.jpg';
 
-export const LandingPage = () => {
+export const AboutUs = () => {
   return (
     <div className="Main">
       <h2>Interaktivní mapa sběrných míst</h2>
