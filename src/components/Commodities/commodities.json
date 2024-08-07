@@ -1,6 +1,7 @@
 [
   {
     "id": 0,
+    "path": "portable-general-use",
     "pb": true,
     "ib": false,
     "ab": false,
@@ -9,6 +10,7 @@
   },
   {
     "id": 1,
+    "path": "portable",
     "pb": true,
     "ib": false,
     "ab": false,
@@ -17,6 +19,7 @@
   },
   {
     "id": 2,
+    "path": "lmt",
     "pb": false,
     "ib": true,
     "ab": false,
@@ -25,6 +28,7 @@
   },
   {
     "id": 3,
+    "path": "sli",
     "pb": false,
     "ib": false,
     "ab": true,
@@ -33,6 +37,7 @@
   },
   {
     "id": 4,
+    "path": "ev-industrial",
     "pb": false,
     "ib": true,
     "ab": false,

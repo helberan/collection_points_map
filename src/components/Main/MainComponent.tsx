@@ -50,6 +50,7 @@ export const MainComponent = () => {
           <Routes>
             <Route path="/home" element={<LandingPage />} />
             <Route path="/locations" element={<LocationsList />} />
+            <Route path="/:batteryType/locations" element={<LocationsList />} />
             <Route path="/" element={<Commodities />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/locations/:id" element={<SelectedLocation />} />

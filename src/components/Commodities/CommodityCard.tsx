@@ -1,4 +1,5 @@
 import './CommodityCard.css';
+import { useNavigate } from 'react-router-dom';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
@@ -11,6 +12,7 @@ import lmtBattery from '../../assets/baterie_z_elektrokol.png';
 interface CommodityCardProps {
   commodity: {
     id: number;
+    path: string;
     pb: boolean;
     ib: boolean;
     ab: boolean;
@@ -18,14 +20,19 @@ interface CommodityCardProps {
     description: string;
   };
   handleCheck: (cardId: number) => void;
-  isSelected: boolean;
 }
 
-export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleCheck, isSelected }) => {
+export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleCheck }) => {
   const images = [portableBattery, smallChargableBattery, lmtBattery, carAndOtherBattery, evAndIndustrialBattery];
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate(`/${commodity.path}/locations`);
+    handleCheck(commodity.id);
+  };
 
   return (
-    <Card className={isSelected ? 'commodity-card selected' : 'commodity-card'} onClick={() => handleCheck(commodity.id)}>
+    <Card className="commodity-card" onClick={handleClick}>
       <CardContent sx={{ display: 'flex' }}>
         <img src={images[commodity.id]} alt={commodity.categoryName} />
         <div className="commodity-card-inner">
