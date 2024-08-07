@@ -1,14 +1,10 @@
-import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 //import logo from './assets/ecobat_logo.png';
 import { MapBox } from '../Map/MapBox';
 import { Contact } from './Contact';
@@ -21,32 +17,12 @@ import { StyledMainContainer, StyledAppBar, StyledDrawerHeader } from '../../sty
 const drawerWidth = 450;
 
 export const MainComponent = () => {
-  const [open, setOpen] = useState(true);
-
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
-
   return (
     <Router>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <StyledAppBar position="fixed" open={open}>
-          <Toolbar sx={{ backgroundColor: 'primary' }}>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerOpen}
-              edge="start"
-              sx={{ mr: 2, ...(open && { display: 'none' }) }}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Toolbar>
+        <StyledAppBar position="fixed">
+          <Toolbar sx={{ backgroundColor: 'primary' }}></Toolbar>
         </StyledAppBar>
         <Drawer
           sx={{
@@ -57,9 +33,8 @@ export const MainComponent = () => {
               boxSizing: 'border-box',
             },
           }}
-          variant="persistent"
+          variant="permanent"
           anchor="left"
-          open={open}
         >
           <StyledDrawerHeader sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className="Menu">
@@ -70,7 +45,6 @@ export const MainComponent = () => {
               <Link to="/home">Domů</Link>
               <Link to="/contact">Kontakt</Link>
             </div>
-            <IconButton onClick={handleDrawerClose}>{<ChevronLeftIcon />}</IconButton>
           </StyledDrawerHeader>
           <Divider />
           <Routes>
@@ -81,7 +55,7 @@ export const MainComponent = () => {
             <Route path="/locations/:id" element={<SelectedLocation />} />
           </Routes>
         </Drawer>
-        <StyledMainContainer open={open}>
+        <StyledMainContainer open>
           <MapBox />
         </StyledMainContainer>
       </Box>
