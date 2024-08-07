@@ -40,6 +40,15 @@ export const LocationsList = () => {
     setLoading(false);
   };
 
+  const handleFilterReset = () => {
+    setSearchedText('');
+    setLoading(true);
+    const filtered = locations.filter((location) => location.commodity.includes(selectedType));
+
+    setFilteredLocations(filtered);
+    setLoading(false);
+  };
+
   useEffect(() => {
     setLoading(true);
     const filtered = locations.filter((location) => location.commodity.includes(selectedType));
@@ -66,7 +75,7 @@ export const LocationsList = () => {
         <IconButton onClick={handleSearch}>
           <SearchIcon />
         </IconButton>
-        <IconButton>
+        <IconButton onClick={handleFilterReset}>
           <FilterAltOffIcon />
         </IconButton>
       </Box>
