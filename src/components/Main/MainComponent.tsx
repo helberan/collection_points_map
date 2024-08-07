@@ -22,7 +22,7 @@ export const MainComponent = () => {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <StyledAppBar position="fixed">
-          <Toolbar sx={{ backgroundColor: 'primary' }}></Toolbar>
+          <Toolbar sx={{ backgroundColor: 'primary' }} />
         </StyledAppBar>
         <Drawer
           sx={{
