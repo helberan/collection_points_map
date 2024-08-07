@@ -1,22 +1,16 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export interface SelectedTypes {
-  selectedTypes: number[];
-}
+const initialState: number | unknown = null;
 
-const initialState: SelectedTypes = {
-  selectedTypes: [],
-};
-
-const selectedTypesSlice = createSlice({
-  name: 'selectedTypesSlice',
+const selectedTypeSlice = createSlice({
+  name: 'selectedTypeSlice',
   initialState,
   reducers: {
-    setSelectedTypesState(state, action: PayloadAction<number[]>) {
-      state.selectedTypes = action.payload;
+    setSelectedTypeState(state, action: PayloadAction<number>) {
+      return action.payload;
     },
   },
 });
 
-export const { setSelectedTypesState } = selectedTypesSlice.actions;
-export default selectedTypesSlice.reducer;
+export const { setSelectedTypeState } = selectedTypeSlice.actions;
+export default selectedTypeSlice.reducer;

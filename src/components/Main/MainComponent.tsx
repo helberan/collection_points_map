@@ -8,7 +8,6 @@ import HomeIcon from '@mui/icons-material/Home';
 //import logo from './assets/ecobat_logo.png';
 import { MapBox } from '../Map/MapBox';
 import { Contact } from './Contact';
-import { LandingPage } from './LandingPage';
 import { LocationsList } from '../Locations/LocationsList';
 import { Commodities } from '../Commodities/Commodities';
 import { SelectedLocation } from '../Locations/SelectedLocation';
@@ -41,18 +40,15 @@ export const MainComponent = () => {
               <Link to="/">
                 <HomeIcon />
               </Link>
-              <Link to="/locations">Seznam míst</Link>
-              <Link to="/home">Domů</Link>
               <Link to="/contact">Kontakt</Link>
             </div>
           </StyledDrawerHeader>
           <Divider />
           <Routes>
-            <Route path="/home" element={<LandingPage />} />
-            <Route path="/locations" element={<LocationsList />} />
+            <Route path="/:batteryType/locations" element={<LocationsList />} />
             <Route path="/" element={<Commodities />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/locations/:id" element={<SelectedLocation />} />
+            <Route path="/:batteryType/locations/:id" element={<SelectedLocation />} />
           </Routes>
         </Drawer>
         <StyledMainContainer open>

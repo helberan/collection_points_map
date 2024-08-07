@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 export const SelectedLocation = () => {
-  const { id } = useParams<{ id: string }>();
+  const { batteryType, id } = useParams<{ batteryType: string; id: string }>();
   const selectedLocation = useSelector((state: RootState) => state.selectedLocation);
 
   if (selectedLocation.location.id !== Number(id)) {
@@ -13,7 +13,7 @@ export const SelectedLocation = () => {
 
   return (
     <div className="Main">
-      <Link to="/locations">Zpět</Link>
+      <Link to={`/${batteryType}/locations`}>Zpět</Link>
       <p>{selectedLocation.location.nazev_provozovny}</p>
       <p>{selectedLocation.location.ulice}</p>
       <p>{selectedLocation.location.obec}</p>

@@ -19,7 +19,7 @@ export const MapBox = () => {
 
   //state
   const locations = useSelector((state: RootState) => state.locations.locations);
-  const selectedTypes = useSelector((state: RootState) => state.selectedTypes);
+  const selectedType = useSelector((state: RootState) => state.selectedType);
 
   //locations prepared to be placed on the map
   const [points, setPoints] = useState<Point | null>(null);
@@ -40,9 +40,9 @@ export const MapBox = () => {
   //CREATE POINTS FOR CLUSTERING
   useEffect(() => {
     //filter locations based on selected commodity type
-    const filteredLocations = locations.filter((location) =>
-      location.commodity.some((commodityType) => selectedTypes.selectedTypes.includes(commodityType))
-    );
+
+    console.log(selectedType);
+    const filteredLocations = locations.filter((location) => location.commodity.includes(selectedType));
 
     //locations prepared to be points on the map
     const points: Point = {
@@ -63,7 +63,7 @@ export const MapBox = () => {
       })),
     };
     setPoints(points);
-  }, [locations, selectedTypes]);
+  }, [locations, selectedType]);
 
   //MAP
   useEffect(() => {
