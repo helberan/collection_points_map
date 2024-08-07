@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { RootState, AppDispatch } from '../../store/index';
 import { setLocationsState } from '../../store/locationsSlice';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
@@ -10,6 +10,7 @@ import { Point, Location } from '../../interfaces';
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  const { batteryType } = useParams<{ batteryType: string }>();
 
   const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -149,7 +150,7 @@ export const MapBox = () => {
         //once clicked on an unclustered point store updates and navigates to a selected point route
         mapRef.current.on('click', 'unclustered-point', (e) => {
           dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
-          navigate(`/locations/${e.features[0].properties.id}`);
+          navigate(`/${batteryType}/locations/${e.features[0].properties.id}`);
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {

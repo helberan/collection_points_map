@@ -11,7 +11,12 @@ import { AppDispatch } from '../../store/index';
 import { useDispatch } from 'react-redux';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
 
-export const LocationCard = ({ location }: { location: Location }) => {
+interface LocationCardProps {
+  location: Location;
+  batteryType: string | undefined;
+}
+
+export const LocationCard = ({ location, batteryType }: LocationCardProps) => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleClick = () => {
@@ -23,7 +28,7 @@ export const LocationCard = ({ location }: { location: Location }) => {
       <List>
         <ListItem disablePadding>
           <ListItemText primary={location.nazev_provozovny} secondary={`${location.ulice}, ${location.obec} ${location.psc}`} />
-          <Link to={`/locations/${location.id}`}>
+          <Link to={`/${batteryType}/locations/${location.id}`}>
             <IconButton onClick={handleClick}>
               <NavigateNextIcon />
             </IconButton>

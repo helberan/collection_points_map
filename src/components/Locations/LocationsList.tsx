@@ -11,10 +11,11 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import { Location } from '../../interfaces';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import commodities from '../Commodities/commodities.json';
 
 export const LocationsList = () => {
+  const { batteryType } = useParams<{ batteryType: string }>();
   const [loading, setLoading] = useState<boolean>(true);
   const [searchedText, setSearchedText] = useState<string>('');
   const [filteredLocations, setFilteredLocations] = useState<Location[] | null>(null);
@@ -85,7 +86,7 @@ export const LocationsList = () => {
       ) : (
         <div>
           {filteredLocations?.map((location: Location) => (
-            <LocationCard key={location.kod_provozovny} location={location} />
+            <LocationCard key={location.kod_provozovny} location={location} batteryType={batteryType} />
           ))}
         </div>
       )}
