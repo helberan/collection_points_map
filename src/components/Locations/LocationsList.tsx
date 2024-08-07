@@ -67,7 +67,7 @@ export const LocationsList = () => {
             <ArrowBackIcon />
           </IconButton>
         </Link>
-        <Typography variant="h2" gutterBottom sx={{ fontSize: 20, height: '40px', display: 'flex', alignItems: 'center' }}>
+        <Typography variant="h2" gutterBottom sx={{ fontSize: '1.3rem', height: '40px', display: 'flex', alignItems: 'center' }}>
           {selectedTypeCommodity[0].categoryName}
         </Typography>
       </Box>

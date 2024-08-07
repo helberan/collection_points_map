@@ -1,7 +1,11 @@
+import Typography from '@mui/material/Typography';
+
 export const Contact = () => {
   return (
     <div className="Main">
-      <h2>Kontakt</h2>
+      <Typography variant="h2" sx={{ fontSize: '1.5rem', height: '40px', display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
+        Kontakt
+      </Typography>
       <p>
         ECOBAT s.r.o.
         <br />

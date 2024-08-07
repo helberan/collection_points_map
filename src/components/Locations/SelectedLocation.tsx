@@ -1,3 +1,8 @@
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import PlaceIcon from '@mui/icons-material/Place';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
 import { useParams } from 'react-router';
@@ -13,11 +18,20 @@ export const SelectedLocation = () => {
 
   return (
     <div className="Main">
-      <Link to={`/${batteryType}/locations`}>Zpět</Link>
-      <p>{selectedLocation.location.nazev_provozovny}</p>
-      <p>{selectedLocation.location.ulice}</p>
-      <p>{selectedLocation.location.obec}</p>
-      <p>{selectedLocation.location.psc}</p>
+      <Link to={`/${batteryType}/locations`}>
+        <IconButton>
+          <ArrowBackIcon />
+        </IconButton>
+      </Link>
+      <Typography variant="h2" sx={{ fontSize: '1.3rem', height: '40px', display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
+        {selectedLocation.location.nazev_provozovny}
+      </Typography>
+      <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <PlaceIcon sx={{ marginRight: '1rem' }} />
+        <p>
+          {selectedLocation.location.ulice}, {selectedLocation.location.obec} {selectedLocation.location.psc}
+        </p>
+      </Box>
       <p>{selectedLocation.location.commodity}</p>
     </div>
   );

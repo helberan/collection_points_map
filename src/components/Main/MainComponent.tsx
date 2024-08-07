@@ -5,7 +5,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Toolbar from '@mui/material/Toolbar';
 import Divider from '@mui/material/Divider';
 import HomeIcon from '@mui/icons-material/Home';
-//import logo from './assets/ecobat_logo.png';
+import logo from '../../assets/ecobat_logo.png';
 import { MapBox } from '../Map/MapBox';
 import { Contact } from './Contact';
 import { LocationsList } from '../Locations/LocationsList';
@@ -21,7 +21,9 @@ export const MainComponent = () => {
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
         <StyledAppBar position="fixed">
-          <Toolbar sx={{ backgroundColor: 'primary' }} />
+          <Toolbar sx={{ backgroundColor: 'primary', display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+            <Box component="img" src={logo} alt="Company Logo" sx={{ height: 50 }} />
+          </Toolbar>
         </StyledAppBar>
         <Drawer
           sx={{
