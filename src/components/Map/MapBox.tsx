@@ -41,8 +41,6 @@ export const MapBox = () => {
   //CREATE POINTS FOR CLUSTERING
   useEffect(() => {
     //filter locations based on selected commodity type
-
-    console.log(selectedType);
     const filteredLocations = locations.filter((location) => location.commodity.includes(selectedType));
 
     //locations prepared to be points on the map
@@ -137,7 +135,7 @@ export const MapBox = () => {
             layers: ['clusters'],
           });
           const clusterId = features[0].properties.cluster_id;
-          mapRef.current.getSource('locations').getClusterExpansionZoom(clusterId, (err, zoom) => {
+          mapRef.current.getSource('locations').getClusterExpansionZoom(clusterId, (err: string, zoom: number) => {
             if (err || !mapRef.current) return;
 
             mapRef.current.easeTo({
@@ -171,13 +169,6 @@ export const MapBox = () => {
     return () => mapRef.current.remove();
   }, []);
 
-  /* //MAP RESIZE
-  useLayoutEffect(() => {
-    if (mapRef.current) {
-      mapRef.current.resize();
-    }
-  }, [drawerOpen]); */
-
   //new source for data to be displayed on the map when selecting commodities
   useEffect(() => {
     if (mapRef.current && mapRef.current.getSource('locations')) {
@@ -188,5 +179,5 @@ export const MapBox = () => {
     }
   }, [points]);
 
-  return <div id="map" ref={mapContainerRef} style={{ width: '100%', height: '100vh' }}></div>;
+  return <div id="map" ref={mapContainerRef} style={{ width: '100%', height: '100vh' }} />;
 };

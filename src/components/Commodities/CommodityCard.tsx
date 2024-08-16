@@ -22,7 +22,7 @@ interface CommodityCardProps {
   handleCheck: (cardId: number) => void;
 }
 
-export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleCheck }) => {
+export const CommodityCard = ({ commodity, handleCheck }: CommodityCardProps) => {
   const images = [portableBattery, smallChargableBattery, lmtBattery, carAndOtherBattery, evAndIndustrialBattery];
   const navigate = useNavigate();
 

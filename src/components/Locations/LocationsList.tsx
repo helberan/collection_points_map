@@ -32,7 +32,6 @@ export const LocationsList = () => {
   };
 
   const handleSearch = () => {
-    console.log('searching....', searchedText);
     setLoading(true);
 
     const filtered = locations.filter((searchedLocation) => searchedLocation.mesto.toLowerCase().includes(searchedText.toLowerCase()));
@@ -41,10 +40,11 @@ export const LocationsList = () => {
     setLoading(false);
   };
 
+  //filter reset
   const handleFilterReset = () => {
     setSearchedText('');
     setLoading(true);
-    const filtered = locations.filter((location) => location.commodity.includes(selectedType));
+    const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
 
     setFilteredLocations(filtered);
     setLoading(false);
@@ -52,8 +52,7 @@ export const LocationsList = () => {
 
   useEffect(() => {
     setLoading(true);
-    const filtered = locations.filter((location) => location.commodity.includes(selectedType));
-    console.log(filtered);
+    const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
 
     setFilteredLocations(filtered);
     setLoading(false);

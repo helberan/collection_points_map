@@ -1,32 +1,4 @@
-/* .commodity-card-wrapper {
-  margin-bottom: 1rem;
-}
-
 .commodity-card {
-  height: 15rem;
-  width: 11rem;
-}
-
-.commodity-card-selected {
-  border: 1px solid #448d52;
-  height: 15rem;
-  width: 11rem;
-}
-
-.commodity-card :hover,
-.commodity-card-selected :hover {
-  cursor: pointer;
-} */
-
-.commodity-card {
-  display: flex;
-  align-items: center;
-  height: 9.19rem;
-  margin-bottom: 0.6rem;
-}
-
-.selected {
-  border: 2px solid #448d52;
   display: flex;
   align-items: center;
   height: 9.19rem;
