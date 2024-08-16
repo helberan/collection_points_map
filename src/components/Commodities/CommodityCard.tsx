@@ -27,7 +27,7 @@ export const CommodityCard: React.FC<CommodityCardProps> = ({ commodity, handleC
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/${commodity.path}/locations`);
+    navigate(`/collection_points_map/${commodity.path}/locations`);
     handleCheck(commodity.id);
   };
 

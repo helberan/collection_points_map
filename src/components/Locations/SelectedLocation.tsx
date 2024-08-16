@@ -18,7 +18,7 @@ export const SelectedLocation = () => {
 
   return (
     <div className="Main">
-      <Link to={`/${batteryType}/locations`}>
+      <Link to={`/collection_points_map/${batteryType}/locations`}>
         <IconButton>
           <ArrowBackIcon />
         </IconButton>

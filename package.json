@@ -2,6 +2,7 @@
   "name": "collection_points_map",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://helberan.github.io/collection_points_map",
   "type": "module",
   "scripts": {
     "dev": "vite",

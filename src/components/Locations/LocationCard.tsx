@@ -28,7 +28,7 @@ export const LocationCard = ({ location, batteryType }: LocationCardProps) => {
       <List>
         <ListItem disablePadding>
           <ListItemText primary={location.nazev_provozovny} secondary={`${location.ulice}, ${location.obec} ${location.psc}`} />
-          <Link to={`/${batteryType}/locations/${location.id}`}>
+          <Link to={`/collection_points_map/${batteryType}/locations/${location.id}`}>
             <IconButton onClick={handleClick}>
               <NavigateNextIcon />
             </IconButton>

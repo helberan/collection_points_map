@@ -39,18 +39,18 @@ export const MainComponent = () => {
         >
           <StyledDrawerHeader sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div className="Menu">
-              <Link to="/">
+              <Link to="/collection_points_map">
                 <HomeIcon />
               </Link>
-              <Link to="/contact">Kontakt</Link>
+              <Link to="/collection_points_map/contact">Kontakt</Link>
             </div>
           </StyledDrawerHeader>
           <Divider />
           <Routes>
-            <Route path="/:batteryType/locations" element={<LocationsList />} />
-            <Route path="/" element={<Commodities />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/:batteryType/locations/:id" element={<SelectedLocation />} />
+            <Route path="/collection_points_map/:batteryType/locations" element={<LocationsList />} />
+            <Route path="/collection_points_map" element={<Commodities />} />
+            <Route path="/collection_points_map/contact" element={<Contact />} />
+            <Route path="/collection_points_map/:batteryType/locations/:id" element={<SelectedLocation />} />
           </Routes>
         </Drawer>
         <StyledMainContainer open>

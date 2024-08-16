@@ -62,7 +62,7 @@ export const LocationsList = () => {
   return (
     <div className="Main">
       <Box sx={{ display: 'flex', alignItems: 'flex-start', marginBottom: '1rem' }}>
-        <Link to="/">
+        <Link to="/collection_points_map">
           <IconButton sx={{ marginRight: '1rem' }}>
             <ArrowBackIcon />
           </IconButton>

@@ -150,7 +150,7 @@ export const MapBox = () => {
         //once clicked on an unclustered point store updates and navigates to a selected point route
         mapRef.current.on('click', 'unclustered-point', (e) => {
           dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
-          navigate(`/${batteryType}/locations/${e.features[0].properties.id}`);
+          navigate(`/collection_points_map/${batteryType}/locations/${e.features[0].properties.id}`);
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {
