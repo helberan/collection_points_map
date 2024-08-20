@@ -17,6 +17,6 @@
   width: auto;
 }
 
-.commodity-card :hover {
+.clickable {
   cursor: pointer;
 }

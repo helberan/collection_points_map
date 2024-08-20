@@ -20,7 +20,7 @@ export const Commodities = () => {
       </Typography>
       <div className="Commodity-cards-wrapper">
         {commoditiesData.map((commodity) => (
-          <CommodityCard key={commodity.id} commodity={commodity} handleCheck={handleCheck} />
+          <CommodityCard key={commodity.id} commodity={commodity} clickable={true} handleCheck={handleCheck} />
         ))}
       </div>
     </div>

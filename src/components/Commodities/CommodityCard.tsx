@@ -19,20 +19,25 @@ interface CommodityCardProps {
     categoryName: string;
     description: string;
   };
-  handleCheck: (cardId: number) => void;
+  clickable: boolean;
+  handleCheck?: (cardId: number) => void;
 }
 
-export const CommodityCard = ({ commodity, handleCheck }: CommodityCardProps) => {
+export const CommodityCard = ({ commodity, clickable, handleCheck }: CommodityCardProps) => {
   const images = [portableBattery, smallChargableBattery, lmtBattery, carAndOtherBattery, evAndIndustrialBattery];
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/collection_points_map/${commodity.path}/locations`);
-    handleCheck(commodity.id);
+    if (clickable) {
+      navigate(`/collection_points_map/${commodity.path}/locations`);
+      if (handleCheck) {
+        handleCheck(commodity.id);
+      }
+    }
   };
 
   return (
-    <Card className="commodity-card" onClick={handleClick}>
+    <Card className={`commodity-card ${clickable ? 'clickable' : ''}`} onClick={handleClick}>
       <CardContent sx={{ display: 'flex' }}>
         <img src={images[commodity.id]} alt={commodity.categoryName} />
         <div className="commodity-card-inner">
