@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import CloseIcon from '@mui/icons-material/Close';
 import PlaceIcon from '@mui/icons-material/Place';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -19,8 +19,8 @@ export const SelectedLocation = () => {
   useEffect(() => {
     const identifyCommodities = () => {
       let numbers: number[];
-      if (typeof selectedLocation.location.commodity === 'string') {
-        const stringNumbers = selectedLocation.location.commodity.replace(/[\[\]]/g, '').split(',');
+      if (selectedLocation && typeof selectedLocation.location.commodity === 'string') {
+        const stringNumbers = selectedLocation.location.commodity.replace(/[[\]]/g, '').split(',');
         numbers = stringNumbers.map((stringNumber: string) => Number(stringNumber));
       } else {
         numbers = selectedLocation.location.commodity;
@@ -37,11 +37,13 @@ export const SelectedLocation = () => {
   } else {
     return (
       <div className="Main">
-        <Link to={`/collection_points_map/${batteryType}/locations`}>
-          <IconButton>
-            <ArrowBackIcon />
-          </IconButton>
-        </Link>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Link to={`/collection_points_map/${batteryType}/locations`}>
+            <IconButton>
+              <CloseIcon />
+            </IconButton>
+          </Link>
+        </Box>
         <Typography variant="h2" sx={{ fontSize: '1.3rem', height: '40px', display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
           {selectedLocation.location.nazev_provozovny}
         </Typography>

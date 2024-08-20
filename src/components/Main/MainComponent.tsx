@@ -42,7 +42,7 @@ export const MainComponent = () => {
               <Link to="/collection_points_map">
                 <HomeIcon />
               </Link>
-              <Link to="/collection_points_map/contact">Kontakt</Link>
+              <Link to="/collection_points_map/contact">O nás</Link>
             </div>
           </StyledDrawerHeader>
           <Divider />
