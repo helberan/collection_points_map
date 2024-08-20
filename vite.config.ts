@@ -9,5 +9,6 @@ export default defineConfig(({ mode }) => {
       'process.env.REACT_APP_MAPBOX_TOKEN': JSON.stringify(env.REACT_APP_MAPBOX_TOKEN),
     },
     plugins: [react()],
+    base: '/collection_points_map',
   };
 });

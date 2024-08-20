@@ -13,7 +13,7 @@ export const SelectedLocation = () => {
   const selectedLocation = useSelector((state: RootState) => state.selectedLocation);
 
   if (selectedLocation.location.id !== Number(id)) {
-    return <div>Location not found or not selected</div>;
+    return <div>Sběrné místo nenalezeno, nebo nebylo zvoleno.</div>;
   }
 
   return (
@@ -33,6 +33,8 @@ export const SelectedLocation = () => {
         </p>
       </Box>
       <p>{selectedLocation.location.commodity}</p>
+      <p>{selectedLocation.location.lat}</p>
+      <p>{selectedLocation.location.lng}</p>
     </div>
   );
 };

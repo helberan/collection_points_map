@@ -26,15 +26,18 @@ export const LocationsList = () => {
 
   const selectedTypeCommodity = commodities.filter((commodity) => commodity.id === selectedType);
 
-  //search a specific location
+  //search a specific location - input change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchedText(e.target.value);
   };
 
+  //search a specific location
   const handleSearch = () => {
     setLoading(true);
 
-    const filtered = locations.filter((searchedLocation) => searchedLocation.mesto.toLowerCase().includes(searchedText.toLowerCase()));
+    const filtered = locations.filter(
+      (location) => location.mesto.toLowerCase().includes(searchedText.toLowerCase()) && location.commodity.includes(selectedTypeCommodity[0].id)
+    );
 
     setFilteredLocations(filtered);
     setLoading(false);
@@ -44,19 +47,40 @@ export const LocationsList = () => {
   const handleFilterReset = () => {
     setSearchedText('');
     setLoading(true);
+
     const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
 
     setFilteredLocations(filtered);
     setLoading(false);
   };
 
+  //locations loading
   useEffect(() => {
     setLoading(true);
+
     const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
 
     setFilteredLocations(filtered);
     setLoading(false);
   }, [locations, selectedType]);
+
+  const locationsDisplay = () => {
+    if (filteredLocations && filteredLocations.length > 0) {
+      return (
+        <div>
+          {filteredLocations?.map((location: Location) => (
+            <LocationCard key={location.kod_provozovny} location={location} batteryType={batteryType} />
+          ))}
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <p>Nic jsme nenašli :(</p>
+        </div>
+      );
+    }
+  };
 
   return (
     <div className="Main">
@@ -79,16 +103,7 @@ export const LocationsList = () => {
           <FilterAltOffIcon />
         </IconButton>
       </Box>
-
-      {loading ? (
-        <Loader />
-      ) : (
-        <div>
-          {filteredLocations?.map((location: Location) => (
-            <LocationCard key={location.kod_provozovny} location={location} batteryType={batteryType} />
-          ))}
-        </div>
-      )}
+      {loading ? <Loader /> : locationsDisplay()}
     </div>
   );
 };

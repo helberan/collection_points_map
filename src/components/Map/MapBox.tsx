@@ -21,6 +21,7 @@ export const MapBox = () => {
   //state
   const locations = useSelector((state: RootState) => state.locations.locations);
   const selectedType = useSelector((state: RootState) => state.selectedType);
+  const selectedLocation = useSelector((state: RootState) => state.selectedLocation);
 
   //locations prepared to be placed on the map
   const [points, setPoints] = useState<Point | null>(null);
@@ -29,7 +30,7 @@ export const MapBox = () => {
   useEffect(() => {
     const fetchLocations = async () => {
       try {
-        const response = await fetch('/locations.json').then((res) => res.json());
+        const response = await fetch('/collection_points_map/locations.json').then((res) => res.json());
         dispatch(setLocationsState(response.locations));
       } catch (err) {
         console.error('locations failed to fetch: ', err);
@@ -149,6 +150,11 @@ export const MapBox = () => {
         mapRef.current.on('click', 'unclustered-point', (e) => {
           dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
           navigate(`/collection_points_map/${batteryType}/locations/${e.features[0].properties.id}`);
+
+          mapRef.current.easeTo({
+            center: [e.features[0].properties.lng, e.features[0].properties.lat],
+            zoom: 14,
+          });
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {
@@ -178,6 +184,17 @@ export const MapBox = () => {
       }
     }
   }, [points]);
+
+  //map center change when a new location is selected in LocationCard
+  useEffect(() => {
+    if (selectedLocation.selected && mapRef.current) {
+      const { lat, lng } = selectedLocation.location;
+      mapRef.current.easeTo({
+        center: [lng, lat],
+        zoom: 14,
+      });
+    }
+  }, [selectedLocation]);
 
   return <div id="map" ref={mapContainerRef} style={{ width: '100%', height: '100vh' }} />;
 };
