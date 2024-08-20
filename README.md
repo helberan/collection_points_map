@@ -42,7 +42,7 @@ REACT_APP_MAPBOX_TOKEN=your_mapbox_token_here
 ### `npm run dev`
 
 Runs the app in the development mode.
-Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
+Open [http://localhost:5173/collection_points_map](http://localhost:5173/collection_points_map) to view it in the browser.
 
 ## Usage
 
