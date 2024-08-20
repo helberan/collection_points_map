@@ -3,7 +3,6 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import PlaceIcon from '@mui/icons-material/Place';
-import Battery20Icon from '@mui/icons-material/Battery20';
 import RecyclingIcon from '@mui/icons-material/Recycling';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -20,12 +19,12 @@ export const SelectedLocation = () => {
 
   useEffect(() => {
     const identifyCommodities = () => {
-      let numbers: number[];
+      let numbers: number[] = [];
       if (selectedLocation && typeof selectedLocation.location.commodity === 'string') {
-        const stringNumbers = selectedLocation.location.commodity.replace(/[[\]]/g, '').split(',');
+        const stringNumbers: string[] = (selectedLocation.location.commodity as string).replace(/[[\]]/g, '').split(',');
         numbers = stringNumbers.map((stringNumber: string) => Number(stringNumber));
       } else {
-        numbers = selectedLocation.location.commodity;
+        numbers = selectedLocation.location.commodity as number[];
       }
 
       setCommodities(commoditiesData.filter((commodity) => numbers.includes(commodity.id)));

@@ -13,9 +13,6 @@ interface CommodityCardProps {
   commodity: {
     id: number;
     path: string;
-    pb: boolean;
-    ib: boolean;
-    ab: boolean;
     categoryName: string;
     description: string;
   };

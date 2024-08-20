@@ -34,7 +34,6 @@ const selectedLocationSlice = createSlice({
   initialState,
   reducers: {
     setSelectedLocationState(state, action: PayloadAction<SelectedLocation>) {
-      //state = action.payload;
       return action.payload;
     },
   },

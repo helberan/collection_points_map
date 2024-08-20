@@ -2,45 +2,30 @@
   {
     "id": 0,
     "path": "portable-general-use",
-    "pb": true,
-    "ib": false,
-    "ab": false,
     "categoryName": "Přenosné spotřebitelské baterie",
     "description": "Baterie z ovladače, hodin, hodinek, počítačové myši, kuchyňských vah apod."
   },
   {
     "id": 1,
     "path": "portable",
-    "pb": true,
-    "ib": false,
-    "ab": false,
     "categoryName": "Malé dobíjecí baterie",
     "description": "Dobíjecí články a baterie pro\u00a0mobilní telefony, laptopy, aku\u2011nářadí, powerbanky, e\u2011cigarety apod. v\u00a0pevném obalu."
   },
   {
     "id": 2,
     "path": "lmt",
-    "pb": false,
-    "ib": true,
-    "ab": false,
     "categoryName": "Baterie z elektrokol",
     "description": "Dobíjecí články a baterie z\u00a0elektrokol, elektrokoloběžek, e\u2011skútrů apod. v\u00a0pevném obalu."
   },
   {
     "id": 3,
     "path": "sli",
-    "pb": false,
-    "ib": false,
-    "ab": true,
     "categoryName": "Mokré a startovací baterie",
     "description": "Startovací baterie, olověné (Pb) a\u00a0kadmiové (Cd) akumulátory s\u00a0tekutým či\u00a0gelovým elektrolytem."
   },
   {
     "id": 4,
     "path": "ev-industrial",
-    "pb": false,
-    "ib": true,
-    "ab": false,
     "categoryName": "Velké akumulátory",
     "description": "Baterie z\u00a0fotovoltaických systémů, baterie z\u00a0elektromobilů apod."
   }

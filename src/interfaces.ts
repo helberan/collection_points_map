@@ -46,7 +46,7 @@ export interface SelectedLocation {
     prumyslove: boolean | undefined;
     prenosne: boolean | undefined;
     automobilove: boolean | undefined;
-    commodity: number[];
+    commodity: number[] | string[];
   };
   selected: boolean;
 }
