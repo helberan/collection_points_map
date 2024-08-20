@@ -3,6 +3,8 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import PlaceIcon from '@mui/icons-material/Place';
+import Battery20Icon from '@mui/icons-material/Battery20';
+import RecyclingIcon from '@mui/icons-material/Recycling';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
@@ -47,21 +49,20 @@ export const SelectedLocation = () => {
         <Typography variant="h2" sx={{ fontSize: '1.3rem', height: '40px', display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
           {selectedLocation.location.nazev_provozovny}
         </Typography>
-        <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
           <PlaceIcon sx={{ marginRight: '1rem' }} />
-          <p>
+          <Typography>
             {selectedLocation.location.ulice}, {selectedLocation.location.obec} {selectedLocation.location.psc}
-          </p>
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '1rem' }}>
+          <RecyclingIcon sx={{ marginRight: '1rem' }} />
+          <Typography>Baterie, které zde můžete odevzdat:</Typography>
         </Box>
         <Box>
-          <Typography variant="h4" sx={{ fontSize: '1.2rem', height: '40px', display: 'flex', alignItems: 'center', marginBottom: '1.5rem' }}>
-            Na tomto místě lze odevzdat:
-          </Typography>
-          <Box>
-            {commodities.map((commodity) => (
-              <CommodityCard key={commodity.id} commodity={commodity} clickable={false} />
-            ))}
-          </Box>
+          {commodities.map((commodity) => (
+            <CommodityCard key={commodity.id} commodity={commodity} clickable={false} />
+          ))}
         </Box>
       </div>
     );

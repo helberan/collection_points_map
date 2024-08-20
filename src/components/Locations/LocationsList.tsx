@@ -95,7 +95,7 @@ export const LocationsList = () => {
         </Typography>
       </Box>
       <Box sx={{ marginBottom: '0.5rem' }}>
-        <TextField id="outlined-search" label="Vyhledat místo" type="search" size="small" onChange={handleChange} />
+        <TextField id="outlined-search" label="Vyhledat místo" type="search" size="small" onChange={handleChange} sx={{ width: '75%' }} />
         <IconButton onClick={handleSearch}>
           <SearchIcon />
         </IconButton>
