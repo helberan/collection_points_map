@@ -1,21 +1,22 @@
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { RootState, AppDispatch } from '../../store/index';
 import { setLocationsState } from '../../store/locationsSlice';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
 import mapboxgl from 'mapbox-gl';
-import { Point, Location } from '../../interfaces';
+import { Location } from '../../interfaces';
+import { GeoJSON, FeatureCollection, Point, GeoJsonProperties } from 'geojson';
+import commoditiesData from '../Commodities/commodities.json';
 
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-  const { batteryType } = useParams<{ batteryType: string }>();
 
   const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
 
   //map containers ref
-  const mapContainerRef = useRef<HTMLDivElement | string>('');
+  const mapContainerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<mapboxgl.Map | null>(null);
 
   //state
@@ -24,7 +25,11 @@ export const MapBox = () => {
   const selectedLocation = useSelector((state: RootState) => state.selectedLocation);
 
   //locations prepared to be placed on the map
-  const [points, setPoints] = useState<Point | null>(null);
+  const [points, setPoints] = useState<string | GeoJSON | undefined>();
+
+  //location battery type url path
+  const findBatteryType = commoditiesData.filter((commodity) => commodity.id === selectedType);
+  const batteryType = findBatteryType[0].path;
 
   //FETCH LOCATIONS
   useEffect(() => {
@@ -42,10 +47,10 @@ export const MapBox = () => {
   //CREATE POINTS FOR CLUSTERING
   useEffect(() => {
     //filter locations based on selected commodity type
-    const filteredLocations = locations.filter((location) => location.commodity.includes(selectedType));
+    const filteredLocations: Location[] = locations.filter((location) => location.commodity.includes(Number(selectedType)));
 
     //locations prepared to be points on the map
-    const points: Point = {
+    const points = {
       type: 'FeatureCollection',
       crs: {
         type: 'name',
@@ -62,7 +67,7 @@ export const MapBox = () => {
         },
       })),
     };
-    setPoints(points);
+    setPoints(points as FeatureCollection<Point, GeoJsonProperties> & { crs: { type: string; properties: { name: string } } });
   }, [locations, selectedType]);
 
   //MAP
@@ -132,39 +137,48 @@ export const MapBox = () => {
 
         //inspect a cluster on click
         mapRef.current.on('click', 'clusters', (e) => {
-          const features = mapRef.current?.queryRenderedFeatures(e.point, {
+          const features = mapRef.current?.queryRenderedFeatures(e.point as mapboxgl.PointLike, {
             layers: ['clusters'],
           });
-          const clusterId = features[0].properties.cluster_id;
-          mapRef.current.getSource('locations').getClusterExpansionZoom(clusterId, (err: string, zoom: number) => {
-            if (err || !mapRef.current) return;
+          if (features) {
+            const { properties, geometry } = features[0];
+            const clusterId = properties?.cluster_id;
 
-            mapRef.current.easeTo({
-              center: features[0].geometry.coordinates,
-              zoom: zoom,
+            mapRef.current.getSource('locations').getClusterExpansionZoom(clusterId, (err: string, zoom: number) => {
+              if (err || !mapRef.current) return;
+
+              mapRef.current.easeTo({
+                center: geometry.coordinates,
+                zoom: zoom,
+              });
             });
-          });
+          }
         });
 
         //once clicked on an unclustered point store updates and navigates to a selected point route
         mapRef.current.on('click', 'unclustered-point', (e) => {
-          dispatch(setSelectedLocationState({ location: e.features[0].properties, selected: true }));
-          navigate(`/collection_points_map/${batteryType}/locations/${e.features[0].properties.id}`);
+          if (e.features) {
+            const { properties } = e.features[0];
 
-          mapRef.current.easeTo({
-            center: [e.features[0].properties.lng, e.features[0].properties.lat],
-            zoom: 14,
-          });
+            dispatch(setSelectedLocationState({ location: properties, selected: true }));
+            navigate(`/collection_points_map/${batteryType}/locations/${properties.id}`);
+
+            mapRef.current &&
+              mapRef.current.easeTo({
+                center: [properties.lng, properties.lat],
+                zoom: 14,
+              });
+          }
         });
 
         mapRef.current.on('mouseenter', 'clusters', () => {
-          mapRef.current.getCanvas().style.cursor = 'pointer';
+          mapRef.current && (mapRef.current.getCanvas().style.cursor = 'pointer');
         });
         mapRef.current.on('mouseenter', 'unclustered-point', () => {
-          mapRef.current.getCanvas().style.cursor = 'pointer';
+          mapRef.current && (mapRef.current.getCanvas().style.cursor = 'pointer');
         });
         mapRef.current.on('mouseleave', 'clusters', () => {
-          mapRef.current.getCanvas().style.cursor = '';
+          mapRef.current && (mapRef.current.getCanvas().style.cursor = '');
         });
         mapRef.current.on('resize', () => {
           console.log('map resized');
@@ -172,7 +186,13 @@ export const MapBox = () => {
       }
     });
 
-    return () => mapRef.current.remove();
+    return () => {
+      if (mapRef.current) {
+        mapRef.current.remove();
+      } else {
+        return;
+      }
+    };
   }, []);
 
   //new source for data to be displayed on the map when selecting commodities
