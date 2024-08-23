@@ -6,7 +6,7 @@ import { setLocationsState } from '../../store/locationsSlice';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
 import mapboxgl from 'mapbox-gl';
 import { Location } from '../../interfaces';
-import { GeoJSON, FeatureCollection, Point, GeoJsonProperties } from 'geojson';
+import { GeoJSON } from 'geojson';
 import commoditiesData from '../Commodities/commodities.json';
 
 export const MapBox = () => {
@@ -25,11 +25,21 @@ export const MapBox = () => {
   const selectedLocation = useSelector((state: RootState) => state.selectedLocation);
 
   //locations prepared to be placed on the map
-  const [points, setPoints] = useState<string | GeoJSON | undefined>();
+  const [points, setPoints] = useState<GeoJSON>();
 
-  //location battery type url path
-  const findBatteryType = commoditiesData.filter((commodity) => commodity.id === selectedType);
-  const batteryType = findBatteryType[0].path;
+  const initialData: GeoJSON = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        properties: [],
+        geometry: {
+          type: 'Point',
+          coordinates: [],
+        },
+      },
+    ],
+  };
 
   //FETCH LOCATIONS
   useEffect(() => {
@@ -50,14 +60,8 @@ export const MapBox = () => {
     const filteredLocations: Location[] = locations.filter((location) => location.commodity.includes(Number(selectedType)));
 
     //locations prepared to be points on the map
-    const points = {
+    const points: GeoJSON = {
       type: 'FeatureCollection',
-      crs: {
-        type: 'name',
-        properties: {
-          name: 'urn:ogc:def:crs:OGC:1.3:CRS84',
-        },
-      },
       features: filteredLocations.map((location: Location) => ({
         type: 'Feature',
         properties: location,
@@ -67,7 +71,7 @@ export const MapBox = () => {
         },
       })),
     };
-    setPoints(points as FeatureCollection<Point, GeoJsonProperties> & { crs: { type: string; properties: { name: string } } });
+    setPoints(points);
   }, [locations, selectedType]);
 
   //MAP
@@ -90,7 +94,7 @@ export const MapBox = () => {
       if (mapRef.current !== null) {
         mapRef.current.addSource('locations', {
           type: 'geojson',
-          data: points,
+          data: initialData,
           cluster: true,
           clusterMaxZoom: 14,
           clusterRadius: 50,
@@ -140,7 +144,8 @@ export const MapBox = () => {
           const features = mapRef.current?.queryRenderedFeatures(e.point as mapboxgl.PointLike, {
             layers: ['clusters'],
           });
-          if (features) {
+
+          if (features && features[0].geometry.type === 'Point') {
             const { properties, geometry } = features[0];
             const clusterId = properties?.cluster_id;
 
@@ -148,7 +153,7 @@ export const MapBox = () => {
               if (err || !mapRef.current) return;
 
               mapRef.current.easeTo({
-                center: geometry.coordinates,
+                center: [geometry.coordinates[0], geometry.coordinates[1]],
                 zoom: zoom,
               });
             });
@@ -159,13 +164,23 @@ export const MapBox = () => {
         mapRef.current.on('click', 'unclustered-point', (e) => {
           if (e.features) {
             const { properties } = e.features[0];
+            let numbers: number[] = [];
+
+            if (typeof properties?.commodity === 'string') {
+              const stringNumbers: string[] = (properties?.commodity as string).replace(/[[\]]/g, '').split(',');
+              numbers = stringNumbers.map((stringNumber: string) => Number(stringNumber));
+            } else {
+              numbers = properties?.commodity as number[];
+            }
+
+            const batteryType = commoditiesData.filter((commodity) => numbers.includes(commodity.id))[0].path;
 
             dispatch(setSelectedLocationState({ location: properties, selected: true }));
-            navigate(`/collection_points_map/${batteryType}/locations/${properties.id}`);
+            navigate(`/collection_points_map/${batteryType}/locations/${properties?.id}`);
 
             mapRef.current &&
               mapRef.current.easeTo({
-                center: [properties.lng, properties.lat],
+                center: [properties?.lng, properties?.lat],
                 zoom: 14,
               });
           }
