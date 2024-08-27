@@ -85,8 +85,8 @@ export const MapBox = () => {
     mapRef.current = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [14.4378, 50.0755],
-      zoom: 6,
+      center: [15.3386383, 50.0281361],
+      zoom: 6.5,
     });
 
     //CLUSTER DATA DEFINITION
