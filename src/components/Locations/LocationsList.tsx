@@ -19,9 +19,13 @@ interface LocationRowProps {
   style: React.CSSProperties;
 }
 
-const listHeight = 720;
+const listHeight = 500; //720;
 const listWidth = 400;
-const listItemSize = 90;
+const listItemSize = 75;
+
+const filterLocations = (locations: Location[], commodityTypeId: number) => {
+  return locations.filter((location) => location.commodity.includes(commodityTypeId));
+};
 
 export const LocationsList = () => {
   const { batteryType } = useParams<{ batteryType: string }>();
@@ -52,17 +56,17 @@ export const LocationsList = () => {
   const handleFilterReset = () => {
     setSearchedText('');
 
-    const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
+    const filtered = filterLocations(locations, selectedTypeCommodity[0].id);
 
     setFilteredLocations(filtered);
   };
 
   //locations loading
   useEffect(() => {
-    const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
+    const filtered = filterLocations(locations, selectedTypeCommodity[0].id);
 
     setFilteredLocations(filtered);
-  }, [locations, selectedType, selectedTypeCommodity]);
+  }, []);
 
   //Row of the list
   const LocationRow = ({ index, style }: LocationRowProps) => {
@@ -99,6 +103,11 @@ export const LocationsList = () => {
           <FilterAltOffIcon />
         </IconButton>
       </Box>
+      {filteredLocations && filteredLocations.length > 0 ? null : (
+        <p>
+          V hledaném názvu "<em>{`${searchedText}`}</em>" jsme žádné sběrné místo nenašli.
+        </p>
+      )}
       <List height={listHeight} itemCount={filteredLocations?.length || 0} itemSize={listItemSize} width={listWidth}>
         {LocationRow}
       </List>
