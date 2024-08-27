@@ -1,3 +1,4 @@
+import Loader from '../Loader';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -6,25 +7,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import FilterAltOffIcon from '@mui/icons-material/FilterAltOff';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { LocationCard } from './LocationCard';
-import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, ChangeEvent } from 'react';
-import { FixedSizeList as List } from 'react-window';
 import { Location } from '../../interfaces';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
+import { Link, useParams } from 'react-router-dom';
 import commodities from '../Commodities/commodities.json';
-
-interface LocationRowProps {
-  index: number;
-  style: React.CSSProperties;
-}
-
-const listHeight = 720;
-const listWidth = 400;
-const listItemSize = 90;
 
 export const LocationsList = () => {
   const { batteryType } = useParams<{ batteryType: string }>();
+  const [loading, setLoading] = useState<boolean>(true);
   const [searchedText, setSearchedText] = useState<string>('');
   const [filteredLocations, setFilteredLocations] = useState<Location[] | null>(null);
 
@@ -41,40 +33,52 @@ export const LocationsList = () => {
 
   //search a specific location
   const handleSearch = () => {
+    setLoading(true);
+
     const filtered = locations.filter(
       (location) => location.mesto.toLowerCase().includes(searchedText.toLowerCase()) && location.commodity.includes(selectedTypeCommodity[0].id)
     );
 
     setFilteredLocations(filtered);
+    setLoading(false);
   };
 
   //filter reset
   const handleFilterReset = () => {
     setSearchedText('');
+    setLoading(true);
 
     const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
 
     setFilteredLocations(filtered);
+    setLoading(false);
   };
 
   //locations loading
   useEffect(() => {
+    setLoading(true);
+
     const filtered = locations.filter((location) => location.commodity.includes(selectedTypeCommodity[0].id));
 
     setFilteredLocations(filtered);
-  }, [locations, selectedType, selectedTypeCommodity]);
+    setLoading(false);
+  }, [locations, selectedType]);
 
-  //Row of the list
-  const LocationRow = ({ index, style }: LocationRowProps) => {
-    if (filteredLocations) {
-      const location = filteredLocations[index];
+  const locationsDisplay = () => {
+    if (filteredLocations && filteredLocations.length > 0) {
       return (
-        <div style={style} key={location.kod_provozovny}>
-          <LocationCard location={location} batteryType={batteryType} />
+        <div>
+          {filteredLocations?.map((location: Location) => (
+            <LocationCard key={location.kod_provozovny} location={location} batteryType={batteryType} />
+          ))}
         </div>
       );
     } else {
-      return null;
+      return (
+        <div>
+          <p>Nic jsme nenašli :(</p>
+        </div>
+      );
     }
   };
 
@@ -99,9 +103,7 @@ export const LocationsList = () => {
           <FilterAltOffIcon />
         </IconButton>
       </Box>
-      <List height={listHeight} itemCount={filteredLocations?.length || 0} itemSize={listItemSize} width={listWidth}>
-        {LocationRow}
-      </List>
+      {loading ? <Loader /> : locationsDisplay()}
     </div>
   );
 };
