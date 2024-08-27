@@ -20,8 +20,9 @@ interface CommodityCardProps {
   handleCheck?: (cardId: number) => void;
 }
 
+const images = [portableBattery, smallChargableBattery, lmtBattery, carAndOtherBattery, evAndIndustrialBattery];
+
 export const CommodityCard = ({ commodity, clickable, handleCheck }: CommodityCardProps) => {
-  const images = [portableBattery, smallChargableBattery, lmtBattery, carAndOtherBattery, evAndIndustrialBattery];
   const navigate = useNavigate();
 
   const handleClick = () => {

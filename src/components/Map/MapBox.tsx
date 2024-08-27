@@ -9,11 +9,25 @@ import { Location } from '../../interfaces';
 import { GeoJSON } from 'geojson';
 import commoditiesData from '../Commodities/commodities.json';
 
+const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
+
+const initialData: GeoJSON = {
+  type: 'FeatureCollection',
+  features: [
+    {
+      type: 'Feature',
+      properties: [],
+      geometry: {
+        type: 'Point',
+        coordinates: [],
+      },
+    },
+  ],
+};
+
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
-
-  const mapboxToken: string | undefined = process.env.REACT_APP_MAPBOX_TOKEN;
 
   //map containers ref
   const mapContainerRef = useRef<HTMLDivElement | null>(null);
@@ -26,20 +40,6 @@ export const MapBox = () => {
 
   //locations prepared to be placed on the map
   const [points, setPoints] = useState<GeoJSON>();
-
-  const initialData: GeoJSON = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        properties: [],
-        geometry: {
-          type: 'Point',
-          coordinates: [],
-        },
-      },
-    ],
-  };
 
   //FETCH LOCATIONS
   useEffect(() => {
