@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { RootState, AppDispatch } from '../../store/index';
 import { setLocationsState } from '../../store/locationsSlice';
 import { setSelectedLocationState } from '../../store/selectedLocationSlice';
@@ -28,6 +28,8 @@ const initialData: GeoJSON = {
 export const MapBox = () => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
+  const currentPath = useLocation();
+  console.log(currentPath.pathname);
 
   //map containers ref
   const mapContainerRef = useRef<HTMLDivElement | null>(null);

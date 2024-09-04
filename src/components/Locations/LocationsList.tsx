@@ -1,3 +1,4 @@
+import Loader from '../Loader';
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
@@ -34,9 +35,8 @@ export const LocationsList = () => {
 
   //store
   const locations = useSelector((state: RootState) => state.locations.locations);
-  const selectedType = useSelector((state: RootState) => state.selectedType);
 
-  const selectedTypeCommodity = commodities.filter((commodity) => commodity.id === selectedType);
+  const selectedTypeCommodity = commodities.filter((commodity) => commodity.path === batteryType);
 
   //search a specific location - input change
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +66,7 @@ export const LocationsList = () => {
     const filtered = filterLocations(locations, selectedTypeCommodity[0].id);
 
     setFilteredLocations(filtered);
-  }, []);
+  }, [locations]);
 
   //Row of the list
   const LocationRow = ({ index, style }: LocationRowProps) => {
@@ -103,14 +103,20 @@ export const LocationsList = () => {
           <FilterAltOffIcon />
         </IconButton>
       </Box>
-      {filteredLocations && filteredLocations.length > 0 ? null : (
-        <p>
-          V hledaném názvu "<em>{`${searchedText}`}</em>" jsme žádné sběrné místo nenašli.
-        </p>
+      {filteredLocations ? (
+        <>
+          {filteredLocations.length > 0 ? null : (
+            <p>
+              V hledaném názvu "<em>{`${searchedText}`}</em>" jsme žádné sběrné místo nenašli.
+            </p>
+          )}
+          <List height={listHeight} itemCount={filteredLocations?.length || 0} itemSize={listItemSize} width={listWidth}>
+            {LocationRow}
+          </List>
+        </>
+      ) : (
+        <Loader />
       )}
-      <List height={listHeight} itemCount={filteredLocations?.length || 0} itemSize={listItemSize} width={listWidth}>
-        {LocationRow}
-      </List>
     </div>
   );
 };
